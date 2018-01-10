@@ -1,10 +1,3 @@
-/*
- * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
- * DS102: Remove unnecessary code created because of implicit returns
- * DS205: Consider reworking code to avoid use of IIFEs
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const jade = require('jade');
 const { markdown } = require('markdown');
 const fs = require('fs');
@@ -49,7 +42,7 @@ let imageIndex = 0;
 const generateImages = function(tree) {
   // find code blocks
   const codeBlocks = [];
-  for (var node of Array.from(tree)) {
+  for (var node of tree) {
     if (node[0] === 'code_block') {
       codeBlocks.push(node[1]);
     }
@@ -57,7 +50,7 @@ const generateImages = function(tree) {
   
   return (() => {
     const result = [];
-    for (node of Array.from(tree)) {
+    for (node of tree) {
       if ((node[0] === 'para') && Array.isArray(node[1]) && (node[1][0] === 'img')) {
         // compile the code
         const attrs = node[1][1];
@@ -106,7 +99,7 @@ const generateImages = function(tree) {
 };
 
 const pages = [];
-for (let file of Array.from(files)) {
+for (let file of files) {
   let content = fs.readFileSync(file, 'utf8');
   
   // turn github highlighted code blocks into normal markdown code blocks

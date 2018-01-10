@@ -1,11 +1,3 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * DS103: Rewrite code to no longer use __guard__
- * DS205: Consider reworking code to avoid use of IIFEs
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const fs = require('fs');
 const vm = require('vm');
 const md = require('markdown').markdown;
@@ -151,8 +143,10 @@ class Node {
         
           return this.content.push(new Node(['code', opts, text]));
       });
-    
-        __guard__(this.content[this.content.length - 1], x => x.attrs.continued = false);
+        const lastContent = this.content[this.content.length - 1]
+        if (lastContent != null) {
+          lastContent.attrs.continued = false
+        }
         codeBlocks.push(code);
         break;
       
@@ -317,7 +311,3 @@ const renderTitlePage = function(doc) {
   render(doc, 'annotations.coffee.md');
   return doc.end();
 })();
-
-function __guard__(value, transform) {
-  return (typeof value !== 'undefined' && value !== null) ? transform(value) : undefined;
-}
