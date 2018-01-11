@@ -10,3 +10,5 @@ js/
 demo/bundle.js
 *.html
 !demo/browser.html
+test/pdfs/pdfkit-0.8.3/
+test/pdfs/out/
