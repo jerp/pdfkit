@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 const fs = require('fs')
-const PDFDocument = require('../lib/document')
+import PDFDocument from '../lib/document'
 
 const { docList, newDoc, refFolder, outFolder } = require('./pdfs/')
 

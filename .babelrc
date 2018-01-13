@@ -1,0 +1,14 @@
+{
+  "presets": [
+    "es2015",
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "compact": "auto",
+  "plugins": [
+  ]
+}
