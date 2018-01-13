@@ -1,3 +1,16 @@
+# Fork notes
+
+## Objective
+
+- decafeinate -> done
+- es6 -> started
+- rollup -> prepared
+- mocha -> started
+- iso functionality
+  - api -> partialy unit tested
+  - demo -> todo
+  - doc -> todo
+
 # PDFKit
 
 A JavaScript PDF generation library for Node and the browser.
