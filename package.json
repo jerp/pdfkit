@@ -53,7 +53,13 @@
     "linebreak": "^0.3.0",
     "png-js": ">=0.1.0"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "babel ./src --out-dir ./lib --copy-files",
+    "build:watch": "babel ./src --out-dir ./lib --watch --copy-files",
+    "build:clean": "node_modules/.bin/rimraf ./lib",
+    "build:server": "babel -d ./build ./src -s",
+    "test": "./node_modules/mocha/bin/_mocha -u tdd --compilers js:babel-core/register"
+  },
   "main": "js/document",
   "browserify": {
     "transform": [

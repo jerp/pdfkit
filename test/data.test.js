@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 
-import Data from '../lib/data'
+import Data from '../src/data'
 
 const makeSting = (string) => (new String(string)) // eslint-disable-line
 

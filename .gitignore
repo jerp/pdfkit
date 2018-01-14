@@ -3,7 +3,6 @@ lib/font/tables/.DS_Store
 /node_modules/
 /tests/
 node-zlib/
-src/
 playground/
 build/
 js/
@@ -12,3 +11,4 @@ demo/bundle.js
 !demo/browser.html
 test/pdfs/pdfkit-0.8.3/
 test/pdfs/out/
+lib/

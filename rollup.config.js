@@ -19,18 +19,19 @@ export default {
       ]
     }),
     // dirty trick to import fontkit with rollup-plugin-node-resolve
+    // should fork fontkit to expose pkg.module
+    // use of js:next with current version of fontkit not an option since transpilation would be required
     replace({
       include: 'node_modules/fontkit/index.js',
       'module.exports = fontkit': "export default fontkit"
     }),
     resolve({
-      // use "module" field for ES6 module if possible
+      // jsnext: true,
       module: true,
       browser: true,
+      // preferBuiltins: true,
     }),
     commonjs({
-      // non-CommonJS modules will be ignored, but you can also
-      // specifically include/exclude files
       include: [
         'node_modules/linebreak/**',
         'node_modules/unicode-trie/**',
@@ -40,8 +41,8 @@ export default {
     }),
     babel({
       babelrc: false,
+      exclude: 'node_modules/**',
       presets: [['es2015', { modules: false, loose: true }]],
-      //plugins: ['transform-decorators-legacy', 'transform-class-properties', 'transform-runtime'],
       plugins: ['external-helpers'],
       compact: true,
       runtimeHelpers: true
