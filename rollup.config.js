@@ -5,11 +5,12 @@ import commonjs from 'rollup-plugin-commonjs'
 import json from 'rollup-plugin-json'
 import replace from 'rollup-plugin-replace'
 import resolve from 'rollup-plugin-node-resolve'
+import globals from 'rollup-plugin-node-globals';
 
 export default {
-  input: 'lib/document.js',
+  // input: 'src/document.js',
+  input: 'src/demo/index.js',
   plugins: [
-    builtins(),
     json(),
     inlineDataFiles({
       include: [
@@ -29,7 +30,7 @@ export default {
       // jsnext: true,
       module: true,
       browser: true,
-      // preferBuiltins: true,
+      preferBuiltins: true,
     }),
     commonjs({
       include: [
@@ -39,26 +40,28 @@ export default {
         'node_modules/png-js/**',
       ],
     }),
+    globals(),
+    builtins(),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
-      presets: [['es2015', { modules: false, loose: true }]],
+      presets: [['es2015']], //, { modules: 'commonjs', loose: true }]],
       plugins: ['external-helpers'],
       compact: true,
       runtimeHelpers: true
     })
   ],
   output: {
-    file: 'index.js',
-    format: 'cjs'
+    file: 'demo/index.js',
+    format: 'iife'
   }
 };
 
 // plugin inlining afm font file
 import path from 'path'
 import fs from 'fs'
-import { createFilter } from "rollup-pluginutils"
-const reAfm = /fs\.readFileSync\((?:(__dirname)\s*\+\s*)?["']((\.\/)?[^'"]+(?:\.afm))['"]\s*(?:,\s*'(utf8)')\)/g
+import { createFilter } from 'rollup-pluginutils'
+// const reAfm = /fs\.readFileSync\((?:(__dirname)\s*\+\s*)?["']((\.\/)?[^'"]+(?:\.afm))['"]\s*(?:,\s*'(utf8)')\)/g
 const reLocPath = /(?:fs|require\('fs'\))\.readFileSync\((?:(__dirname)\s*\+\s*)?["']((\.\/)?[^'"]+(?:\.afm|\.trie))['"]\s*(?:,\s*['"]([^'"]*)['"])?\)/g
 function inlineDataFiles(options = {}) {
   const {
