@@ -1,5 +1,3 @@
-
-
 class AFMFont {
   static open(filename) {
     const fs = require('fs')

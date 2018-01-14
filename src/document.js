@@ -6,8 +6,8 @@ By Devon Govett
 
 import { Readable as StreamReadable } from 'stream'
 import PDFObject from './object'
-import PDFReference  from './reference'
-import PDFPage  from './page'
+import PDFReference from './reference'
+import PDFPage from './page'
 
 class PDFDocument extends StreamReadable {
   constructor(options) {

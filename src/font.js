@@ -25,9 +25,9 @@ class PDFFont {
       return new EmbeddedFont(document, createFont(src, family), id)
     }
   }
-  constructor() {
-    // throw new Error('Cannot construct a PDFFont directly.')
-  }
+  // constructor() {
+  //   throw new Error('Cannot construct a PDFFont directly.')
+  // }
   encode() {
     throw new Error('encode(text) must be implemented by subclasses')
   }
